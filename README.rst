@@ -39,5 +39,3 @@ Recurrance Relation
 
 :Domain: [-1,1]
 
-Testing latex math :texmath:`$L_0 = \Sigma \approx ! \mu \sigma \psi$`
-:texmath:`$$L_1 = T_1 + P_{k+1}$$`

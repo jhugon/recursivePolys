@@ -26,15 +26,13 @@ protected:
   Double_t _xFuncMax;
   Double_t _xFuncMin;
 
-  Double_t evalPureFunc(const & RooRealProxy x, const & RooListProxy coefList, const & Int_t kCurr, const & Int_t kGoal, const & Double_t evalCurr, const & Double_t evalLast ) const {return -1.};
+  Double_t evalPureFunc(const & Double_t x, const & RooListProxy coefList, const & Int_t kCurr, const & Int_t kGoal, const & Double_t evalCurr, const & Double_t evalLast ) const {return -1.};
   
   Double_t evaluate() const
   {
-    if (_order == 0) {return 1.;};
 
     Double_t xScaleFactor = (xFuncMax - xFuncMin) / (_x.max()-_x.min());
     Double_t xScaled = (_x - (_x.min()-_xFuncMin)) / xScaleFactor;
-    if (_order == 1) {return xScaled;};
 
     Double_t result = evalPureFunc(xScaled,_coefList,2,_order,xScaled,1.);
     return result;
@@ -62,9 +60,9 @@ public:
     RooAbsPdf(other, name), 
   _x("x", this, other._x), 
   _coefList("coefList",this,other._coefList),
-  _order(-1),
-  _xFuncMax(0.),
-  _xFuncMin(0.) {}
+  _order(other._order),
+  _xFuncMax(order._xFuncMax),
+  _xFuncMin(order._xFuncMin) {}
   
   
   virtual TObject* clone(const char* newname) const { return new RooRecursivePolyBase(*this, newname); }
