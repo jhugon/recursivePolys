@@ -12,7 +12,7 @@ class RooRecursiveChebyshev : public RooRecursivePolyBase {
 
 protected:
 
-  Double_t evalPureFunc(const & Double_t x, const & RooListProxy coefList, const & Int_t kCurr, const & Int_t kGoal, const & Double_t evalCurr, const & Double_t evalLast ) const {return -1.};
+  Double_t getNextPolyTerm(const & Double_t x, const & Int_t iGet) const;
 
 public:
   
@@ -20,7 +20,6 @@ public:
               RooAbsReal& x, const RooArgList& coefList) :
   RooRecursivePolyBase(name, title,x,coefList),
   {
-    _order = coefList.getSize();
     _xFuncMax =  1.;
     _xFuncMin = -1.;
   }                
